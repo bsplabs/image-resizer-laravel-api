@@ -26,7 +26,7 @@ class AlbumController extends Controller
     {
         $album = Album::create($request->all());
 
-        return $album;
+        return new AlbumResource($album);
     }
 
     /**
@@ -34,7 +34,7 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        return $album;
+        return new AlbumResource($album);
     }
 
     /**
@@ -44,7 +44,7 @@ class AlbumController extends Controller
     {
         $album->update($request->all());
 
-        return $album;
+        return new AlbumResource($album);
     }
 
     /**
