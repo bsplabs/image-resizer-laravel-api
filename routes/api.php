@@ -16,17 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::prefix('v1')->group(function () {
-    /** Album Routes */
-    Route::apiResource('album', AlbumController::class);
-    /** Image Manipulation Routes */
-    Route::get('image', [ImageManipulationController::class, 'index']);
-    Route::get('image/by-album/{album}', [ImageManipulationController::class, 'byAlbum']);
-    Route::get('image/{image}', [ImageManipulationController::class, 'show']);
-    Route::post('image/resize', [ImageManipulationController::class, 'resize']);
-    Route::delete('image/{image}', [ImageManipulationController::class, 'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('v1')->group(function () {
+        /** Album Routes */
+        Route::apiResource('album', AlbumController::class);
+        /** Image Manipulation Routes */
+        Route::get('image', [ImageManipulationController::class, 'index']);
+        Route::get('image/by-album/{album}', [ImageManipulationController::class, 'byAlbum']);
+        Route::get('image/{image}', [ImageManipulationController::class, 'show']);
+        Route::post('image/resize', [ImageManipulationController::class, 'resize']);
+        Route::delete('image/{image}', [ImageManipulationController::class, 'destroy']);
+    });
 });
